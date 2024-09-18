@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: keycloak
+  annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
   labels:
     app.kubernetes.io/instance: keycloak
     app.kubernetes.io/name: keycloak
@@ -60,7 +62,6 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
             runAsNonRoot: true
-            seLinuxOptions: {}
             seccompProfile:
               type: RuntimeDefault
           resources:
@@ -91,7 +92,6 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
             runAsNonRoot: true
-            seLinuxOptions: {}
             seccompProfile:
               type: RuntimeDefault
           env:
